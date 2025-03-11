@@ -9,8 +9,8 @@ class View(Tk):
         self.model = model
 
         #Põhiaken
-        self.__width = 500
-        self.__height = 260
+        self.__width = 350
+        self.__height = 180
         self.title("Valuuta konverter")
         self.center(self.__width, self.__height)
 
@@ -25,7 +25,7 @@ class View(Tk):
         self.__currencies = ['EUR', 'USD', 'GPD', 'JPY']
 
         #loome frame-id
-        self.__frame_top, self.__frame_middle = self.create_frames()
+        self.__frame_top = self.create_frames()
 
         #Loome label-id
         self.__lbl_result = self.create_labels()
@@ -48,13 +48,11 @@ class View(Tk):
         self.geometry(f'{w}x{h}+{x}+{y}')
 
     def create_frames(self):
-        top = Frame(self, background="light blue")
-        middle = Frame(self, background="light yellow")
+        top = Frame(self, background='light blue')
 
-        #Paigtab põhiaknale
+        #Paigutab põhiaknale
         top.pack(fill=BOTH, expand=True)
-        middle.pack(fill=BOTH)
-        return top, middle
+        return top
 
     def create_labels(self):
         Label(self.__frame_top, text='Konverteeritav summa', font=self.__header).grid(row=0, column=0,
@@ -88,6 +86,26 @@ class View(Tk):
         cfrom.grid(row=1, column=1, padx=10, pady=5, sticky=EW)
         cto.grid(row=2, column=1, padx=10, pady=5, sticky=EW)
         return cfrom, cto
+
+    def set_btn_convert_callback(self, callback):
+        self.__btn_convert.config(command=callback)
+
+    #Getters
+    @property
+    def btn_convert(self):
+        return self.__btn_convert
+
+    @property
+    def num_input(self):
+        return self.__num_input
+
+    @property
+    def cmb_cfrom(self):
+        return self.__cmb_cfrom
+
+    @property
+    def cmb_cto(self):
+        return self.__cmb_cto
 
 
 

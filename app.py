@@ -5,4 +5,5 @@ from views.View import View
 if __name__ == '__main__':
     model = CurrencyConverter()
     view = View(model)
+    Controller = Controller(model, view)
     view.mainloop()
