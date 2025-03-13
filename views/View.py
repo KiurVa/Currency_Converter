@@ -1,5 +1,5 @@
 from tkinter import *
-from tkinter import font
+from tkinter import font, messagebox
 from tkinter.ttk import Combobox
 
 
@@ -22,7 +22,7 @@ class View(Tk):
         self.option_add('*Font', self.__default) #Määrab fondiks default
 
         #Ettemääratud valuutad
-        self.__currencies = ['EUR', 'USD', 'GPD', 'JPY']
+        self.__currencies = ['EUR', 'USD', 'GBD', 'JPY']
 
         #loome frame-id
         self.__frame_top = self.create_frames()
@@ -48,6 +48,7 @@ class View(Tk):
         self.geometry(f'{w}x{h}+{x}+{y}')
 
     def create_frames(self):
+        """Teeb framed"""
         top = Frame(self, background='light blue')
 
         #Paigutab põhiaknale
@@ -55,6 +56,7 @@ class View(Tk):
         return top
 
     def create_labels(self):
+        """Teeb labelid"""
         Label(self.__frame_top, text='Konverteeritav summa', font=self.__header).grid(row=0, column=0,
                                                                                       padx=10, pady=5, sticky=EW)
         Label(self.__frame_top, text='Alus valuuta', font=self.__header).grid(row=1, column=0, padx=10, pady=5, sticky=EW)
@@ -66,17 +68,20 @@ class View(Tk):
         return result
 
     def create_button(self):
+        """Teeb nupu"""
         convert = Button(self.__frame_top, text='Konverteeri', font=self.__header)
         convert.grid(row=3, column=0, padx=10, pady=5, columnspan=2, sticky=EW)
         return convert
 
     def create_entry(self):
+        """Teeb sisestuskasti"""
         num = Entry(self.__frame_top)
         num.focus()
         num.grid(row=0, column=1, padx=10, pady=5, sticky=EW)
         return num
 
     def create_combobox(self):
+        """Teeb comboboxi"""
         cfrom = Combobox(self.__frame_top, state='readonly')
         cto = Combobox(self.__frame_top, state='readonly')
         cfrom['values'] = self.__currencies
@@ -86,6 +91,14 @@ class View(Tk):
         cfrom.grid(row=1, column=1, padx=10, pady=5, sticky=EW)
         cto.grid(row=2, column=1, padx=10, pady=5, sticky=EW)
         return cfrom, cto
+
+    @staticmethod
+    def show_message(message):
+        """Errori aken"""
+        root = Tk()
+        root.withdraw()
+        messagebox.showerror("Viga", message=f'{message}')
+        root.destroy()
 
     def set_btn_convert_callback(self, callback):
         self.__btn_convert.config(command=callback)
