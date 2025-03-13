@@ -22,7 +22,7 @@ class View(Tk):
         self.option_add('*Font', self.__default) #Määrab fondiks default
 
         #Ettemääratud valuutad
-        self.__currencies = ['EUR', 'USD', 'GBD', 'JPY']
+        self.__currencies = ['EUR', 'USD', 'GBP', 'JPY']
 
         #loome frame-id
         self.__frame_top = self.create_frames()
@@ -119,6 +119,10 @@ class View(Tk):
     @property
     def cmb_cto(self):
         return self.__cmb_cto
+
+    @property
+    def lbl_result(self):
+        return self.__lbl_result
 
 
 
