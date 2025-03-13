@@ -6,7 +6,7 @@ from views.View import View
 
 class CurrencyConverter:
     def __init__(self):
-        self.api_key = "fc9ac088c3d0fbd906fb84ae"
+        self.api_key = "insert API key here"
         self.base_url = "https://v6.exchangerate-api.com/v6/"
         self.rates = {}
         self.base_currency = "EUR" #Kursside algväärtus on EUR
