@@ -6,7 +6,7 @@ from views.View import View
 
 class CurrencyConverter:
     def __init__(self):
-        self.api_key = "insert API key here"
+        self.api_key = "fc9ac088c3d0fbd906fb84ae"
         self.base_url = "https://v6.exchangerate-api.com/v6/"
         self.rates = {}
         self.base_currency = "EUR" #Kursside algväärtus on EUR
@@ -24,7 +24,6 @@ class CurrencyConverter:
                 data = response.json()
                 if data.get("result") == "success" and "conversion_rates" in data: #Kontrollime, kas data hulgas on vajalik ja tulemus õige
                     self.rates = data.get("conversion_rates") #Salvestab valuutakursid
-                    print(self.rates)
                 else:
                     View.show_message('Viga valuutakursside andmete laadimisel. Kontrolli andmete nimetusi.')
                     sys.exit(1)
@@ -42,17 +41,16 @@ class CurrencyConverter:
             self.fetch_rates()
         if cto in self.rates: #kontrollib, kas siht valuuta on andmete hulgas
             self.result = self.amount * self.rates[cto] #Korrutab summa kursiga
-            return self.result
         else:
             View.show_message(f'Valuuta {cto} kurssi ei leitud.!')
-            return 0
+            self.result = 0
+        return self.result
 
     def get_user_input(self, user_input):
         """Entry boxi andmete kontroll"""
         try:
             self.amount = float(user_input) #Salvestame amount, peab saama olla float
-            return self.amount
         except ValueError:
             View.show_message('Sisesta korrektne arv.')
             self.amount = 0
-            return self.amount
+        return self.amount
