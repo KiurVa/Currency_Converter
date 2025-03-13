@@ -62,7 +62,7 @@ class View(Tk):
         Label(self.__frame_top, text='Alus valuuta', font=self.__header).grid(row=1, column=0, padx=10, pady=5, sticky=EW)
         Label(self.__frame_top, text='Siht valuuta', font=self.__header).grid(row=2, column=0, padx=10, pady=5, sticky=EW)
         Label(self.__frame_top, text='Tulemus', font=self.__header).grid(row=4, column=0, padx=10, pady=5, sticky=EW)
-        result = Label(self.__frame_top, text='0.00')
+        result = Label(self.__frame_top, text='0.00 EUR')
         result.grid(row=4, column=1, padx=10, pady=5, sticky=EW)
 
         return result

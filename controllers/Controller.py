@@ -15,4 +15,4 @@ class Controller:
     def btn_convert_click(self):
         self.model.get_user_input(self.view.num_input.get().strip().replace(',', '.'))
         self.model.convert_currency(self.view.cmb_cfrom.get(), self.view.cmb_cto.get())
-        self.view.lbl_result.config(text=f'{self.model.result:.2f}')
+        self.view.lbl_result.config(text=f'{self.model.result:.2f} {self.view.cmb_cto.get()}')
